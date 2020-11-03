@@ -1,0 +1,2 @@
+module UI
+TestTextWidget 1.0 ./TextWidget.qml
