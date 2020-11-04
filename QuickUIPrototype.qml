@@ -8,7 +8,17 @@ Window {
     visible: true
     color: "#aaffff"
     title: qsTr("Hello World")
-    TestUI.TestTextWidget{
+    Text {
+        onFontChanged: console.log("font changed")
+        text: qsTr("text0")
+        Text{
+            id: otherText
+        }
+        focus: true
 
+        //动作
+        Keys.onDigit0Pressed: font.pixelSize+=1
+        Keys.onDigit1Pressed: font.italic=!font.italic
+        Keys.onDigit2Pressed: font=otherText.font
     }
 }
