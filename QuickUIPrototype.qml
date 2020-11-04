@@ -8,17 +8,17 @@ Window {
     visible: true
     color: "#aaffff"
     title: qsTr("Hello World")
-    Text {
-        onFontChanged: console.log("font changed")
-        text: qsTr("text0")
-        Text{
-            id: otherText
-        }
-        focus: true
 
-        //动作
-        Keys.onDigit0Pressed: font.pixelSize+=1
-        Keys.onDigit1Pressed: font.italic=!font.italic
-        Keys.onDigit2Pressed: font=otherText.font
+    Item{
+        property var theArrar:[]
+        property var theDate:new Date()
+
+        Component.onCompleted: {
+            for(var i=0;i!=10;++i){
+                theArrar.push("theItem "+i)
+            }
+            console.log("js数组长度：",theArrar.length," 这么多个")
+            console.log("时间：",theDate.toUTCString())
+        }
     }
 }
