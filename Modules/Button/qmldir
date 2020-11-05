@@ -1,0 +1,2 @@
+module TestButton
+TheButton 1.0 ./TestButton.qml
