@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick.Window 2.12
 import UI 1.0 as TestUI
 
@@ -10,15 +10,37 @@ Window {
     title: qsTr("Hello World")
 
     Item{
-        property var theArrar:[]
-        property var theDate:new Date()
-
-        Component.onCompleted: {
-            for(var i=0;i!=10;++i){
-                theArrar.push("theItem "+i)
+        states: [
+            State {
+                name: "loading"
+            },
+            State {
+                name: "running"
             }
-            console.log("js数组长度：",theArrar.length," 这么多个")
-            console.log("时间：",theDate.toUTCString())
-        }
+        ]
+        //列表(数组)声明
+        property list<Text> texts0
+        //列表(数组)赋值
+        texts0: [
+            Text {
+                id: text3
+                text: qsTr("text0")
+            },
+            Text{
+                id:text4
+                text: qsTr("text1")
+            }
+        ]
+        //列表(数组)声明并初始化
+        property list<Text> texts:[
+            Text {
+                id: text0
+                text: qsTr("text0")
+            },
+            Text{
+                id:text1
+                text: qsTr("text1")
+            }
+        ]
     }
 }
