@@ -6,9 +6,9 @@ Rectangle{
     height: 40
     Text {
         id: textName
-        text: qsTr("textTest")
+        text: qsTr("textTest_"+someText.text)
         anchors.centerIn: parent
     }
     property alias buttonText:textName.text
-    property var testInt:10
+    default property var someText
 }

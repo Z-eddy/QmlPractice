@@ -8,20 +8,12 @@ Window {
     width: 640
     height: 480
     visible: true
+    color: "#ffff7f"
     title: qsTr("Hello World")
 
-    color: "#aaffff"
-    //别名与其他属性重名时，覆盖其他属性,因为它最后才会声明
-    property alias color:inerRect.color
-
-    Rectangle{
-        id:inerRect
-        color: "#1234ff"
-    }
-
-    Component.onCompleted: {
-        console.log(mainUI.color)
-        mainUI.color="#001122"
-        console.log(mainUI.color)
+    TempButton.TheButton{
+        Text{
+            text: "Append"
+        }
     }
 }
