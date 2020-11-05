@@ -9,10 +9,18 @@ Window {
     color: "#aaffff"
     title: qsTr("Hello World")
 
-    Item{
-        //基本类型列表(数组)声明并初始化
-        property var vals:[
-            1,2,3,4,5
-        ]
+    Row{
+        Text {
+            id: t0
+            text: qsTr("text0")
+            //使用属性点标记
+            font.pixelSize: 22;font.bold: true
+        }
+        Text {
+            id: t1
+            text: qsTr("text1")
+            //使用属性组标记
+            font{pixelSize: 32;bold: true}
+        }
     }
 }
