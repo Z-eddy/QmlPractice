@@ -6,8 +6,7 @@ Item {
 
     Text {
         id: text1
-        x: parent.width / 2
-        y: parent.height / 2
+        anchors.centerIn: parent
         text: qsTr("Text")
         font.pixelSize: 12
     }
