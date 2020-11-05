@@ -11,9 +11,12 @@ Window {
     color: "#ffff7f"
     title: qsTr("Hello World")
 
-    readonly property int num:20
-
-    Component.onCompleted: {
-        console.log(mainUI.num)
+    TempButton.TheButton{
+        onActived:{
+            console.log("act:"+xPos+"."+yPos)
+        }
+        onDeactived: {
+            console.log("release")
+        }
     }
 }
