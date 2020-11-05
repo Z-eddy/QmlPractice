@@ -11,9 +11,9 @@ Window {
     color: "#ffff7f"
     title: qsTr("Hello World")
 
-    TempButton.TheButton{
-        Text{
-            text: "Append"
-        }
+    readonly property int num:20
+
+    Component.onCompleted: {
+        console.log(mainUI.num)
     }
 }
