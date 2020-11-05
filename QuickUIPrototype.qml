@@ -7,15 +7,12 @@ Window {
     height: 480
     visible: true
     color: "#aaffff"
-    property int intName:10
-    property string testName
-    title: qsTr("abc")
+    title: qsTr("Hello World")
 
-    Component.onCompleted: {
-        var i=0
-        for(;i!=10;++i){
-            testName+=i
-        }
-        title=testName
+    Item{
+        //基本类型列表(数组)声明并初始化
+        property var vals:[
+            1,2,3,4,5
+        ]
     }
 }
