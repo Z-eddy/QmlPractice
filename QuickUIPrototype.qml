@@ -11,16 +11,18 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    signal send()
-    onSend: console.log("send msg")
+    Text {
+        id: theLabel
+        text: qsTr("labelText")
 
-    MouseArea{
-        id:theMouseArea
-        anchors.fill: parent
-        onClicked: console.log("mouseArea clicked")
+        function moveTo(x,y){
+            theLabel.x=x
+            theLabel.y=y
+        }
     }
 
-    Component.onCompleted: {
-        theMouseArea.clicked.connect(mainUI.send)
+    MouseArea{
+        anchors.fill: parent
+        onPressed:theLabel.moveTo(mouseX,mouseY)
     }
 }
