@@ -37,28 +37,16 @@ Window {
         anchors.centerIn: rect0
     }
 
-
-    //Connections Qt不推荐使用了?!!!
-
-    /* 连接自带的信号
-    MouseArea{
-        id:mainArea
-        anchors.fill: parent
+    //Qt推荐使用connect进行连接
+    Component.onCompleted: {
+        rect0.pressButton.connect(onTextShowPress)
+        rect0.releaseButton.connect(onTextShowRelease)
     }
 
-    Connections{
-        target: mainArea
-        onClicked:text0.text="area clicked"
+    function onTextShowPress(){
+        text0.text="pressed!"
     }
-    */
-
-    //连接自定义的信号
-    Connections{
-        target:rect0
-        onPressButton:text0.text="presse button"
-    }
-    Connections{
-        target: rect0
-        onReleaseButton:text0.text="release!!!"
+    function onTextShowRelease(){
+        text0.text="release!"
     }
 }
