@@ -11,42 +11,16 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    //于对象Rectangle中定义2个信号
-    Rectangle{
-        id: rect0
-        anchors.centerIn: parent
-        signal pressButton
-        signal releaseButton
-        width: 200
-        height: 50
+    signal send()
+    onSend: console.log("send msg")
 
-        MouseArea{
-            anchors.fill: parent
-            onPressed: {
-                rect0.pressButton()
-            }
-            onReleased: {
-                rect0.releaseButton()
-            }
-        }
-    }
-    //触发
-    Text {
-        id: text0
-        text: qsTr("textInitialize")
-        anchors.centerIn: rect0
+    MouseArea{
+        id:theMouseArea
+        anchors.fill: parent
+        onClicked: console.log("mouseArea clicked")
     }
 
-    //Qt推荐使用connect进行连接
     Component.onCompleted: {
-        rect0.pressButton.connect(onTextShowPress)
-        rect0.releaseButton.connect(onTextShowRelease)
-    }
-
-    function onTextShowPress(){
-        text0.text="pressed!"
-    }
-    function onTextShowRelease(){
-        text0.text="release!"
+        theMouseArea.clicked.connect(mainUI.send)
     }
 }
