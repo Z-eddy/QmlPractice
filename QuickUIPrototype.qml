@@ -11,18 +11,34 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    Text {
-        id: theLabel
-        text: qsTr("labelText")
+    ListView{
+        id:theList
+        width:parent.width/2
+        height:parent.height/2
+        anchors.centerIn: parent
+        focus: true
 
-        function moveTo(x,y){
-            theLabel.x=x
-            theLabel.y=y
+        //设置模型
+        model: ListModel{
+            id:listModel
+            //附加信号
+            Component.onCompleted: {
+                for(var i=0;i!=5;++i){
+                    listModel.append({"Name":"Item"+i,"other":"oth_"+i})
+                }
+            }
         }
-    }
 
-    MouseArea{
-        anchors.fill: parent
-        onPressed:theLabel.moveTo(mouseX,mouseY)
+        //设置每格的代理
+        delegate:
+            Rectangle{
+            width:theList.width
+            height:theList.height/10
+            //附加属性
+            color: ListView.isCurrentItem?"red":"blue"
+            Text {
+                text: qsTr("text")
+            }
+        }
     }
 }
