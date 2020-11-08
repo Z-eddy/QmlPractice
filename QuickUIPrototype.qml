@@ -10,10 +10,7 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    Rectangle{
-        id:theRect
-        width:Foo.fooAdd(200,100)
-        height:Foo.fooSub(200,100)
-        anchors.centerIn: parent
+    Component.onCompleted: {
+        Foo.createSpriteObject(mainUI)
     }
 }
