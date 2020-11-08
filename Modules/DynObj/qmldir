@@ -1,0 +1,2 @@
+module DynObj
+DynObjDelete 1.0 ./DynObjDelete.qml
