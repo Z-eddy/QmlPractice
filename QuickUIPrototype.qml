@@ -1,6 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Window 2.12
-import "./Modules/NoQMLDir" as NoQmlDir
+import Button 1.0 as TheBtn
 
 Window {
     id:mainUI
@@ -10,7 +10,7 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    NoQmlDir.NoQMLDir{
-
+    TheBtn.TheButton{
+        onPressedChanged: console.log(pressed)
     }
 }
