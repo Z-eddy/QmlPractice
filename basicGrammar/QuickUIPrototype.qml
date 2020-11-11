@@ -9,19 +9,10 @@ Window {
 //    color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    Rectangle{
-        id:rect0_
-        width: 300
-        height: 200
-        opacity: 0.5
-        color: "blue"
-        Rectangle{
-            id:rect1_
-            width: 300
-            height: 200
-            x:parent.x+200
-            y:parent.y+100
-            color: "red"
-        }
+    Text {
+        id: text_
+        elide:Text.ElideRight
+        width: 100
+        text: qsTr("textabcdefghijklmnopqrstuvwxyz0123456789")
     }
 }
