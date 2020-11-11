@@ -9,52 +9,24 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    Column{
-        padding: 10
-        spacing: 20
+    Grid{
+        padding: 5
 
-        Rectangle{
-            id:greenRect_
-            color: "green"
-            border{color: "black";width: 3}
-            width: 20
-            height: 100
-        }
-        Rectangle{
-            color: "red"
-            border{color: "black";width: 1}
-            width: 50
-            height: 50
-        }
-        Rectangle{
-            color: "blue"
-            border{color: "black";width: 2}
-            width: 10
-            height: 50
-        }
+        Repeater{
+            model: 10//创建10个
+            Rectangle{//delegate
+                id:rect_
+                width: 40
+                height: 30
+                border.width: 2
+                color: Positioner.isFirstItem?"red":"lightsteelblue"
 
-        add: Transition {
-            NumberAnimation{
-                properties: "x,y"
-                duration: 500
+                Text {
+                    id: text_
+                    anchors.centerIn: parent
+                    text: rect_.Positioner.index//显示自己的索引
+                }
             }
         }
-
-        move: Transition {
-            NumberAnimation{
-                properties: "x,y"
-                duration: 500
-            }
-        }
-
-        populate: Transition {
-            NumberAnimation{
-                properties: "x,y"
-                duration: 500
-            }
-        }
-
-        focus: true
-        Keys.onSpacePressed:greenRect_.visible=!greenRect_.visible
     }
 }
