@@ -12,6 +12,26 @@ Window {
     Rectangle{
         width: 200
         height: 50
+//        anchors.centerIn: parent
+        color:"yellow"
+
+        TextInput{
+            color: "blue"
+            font.pixelSize: parent.height-2
+            validator: IntValidator{
+                bottom: 10
+                top: 20
+            }
+            anchors{fill: parent;centerIn: parent}
+//            focus: true
+
+            onTextEdited: console.log(text)
+        }
+
+    }
+    Rectangle{
+        width: 200
+        height: 50
         anchors.centerIn: parent
         color:"yellow"
 
@@ -23,7 +43,7 @@ Window {
                 top: 20
             }
             anchors{fill: parent;centerIn: parent}
-            focus: true
+//            focus: true
 
             onEditingFinished: console.log(text)
         }
