@@ -12,10 +12,11 @@ Window {
     Text {
         id: text_
         width: 100
+        height: 50
         font{pixelSize: 25}
         text: qsTr("textabcdefghijklmnopqrstuvwxyz0123456789")
         color: "#FF0000"
-        opacity: 0.2
+        elide:Text.ElideRight
         wrapMode: Text.Wrap
     }
 }
