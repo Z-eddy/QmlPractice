@@ -10,9 +10,16 @@ Window {
     title: qsTr("这是一个小标题")
 
     Column{
-        padding: 5
+        padding: 10
         spacing: 20
 
+        Rectangle{
+            id:greenRect_
+            color: "green"
+            border{color: "black";width: 3}
+            width: 20
+            height: 100
+        }
         Rectangle{
             color: "red"
             border{color: "black";width: 1}
@@ -25,11 +32,29 @@ Window {
             width: 10
             height: 50
         }
-        Rectangle{
-            color: "green"
-            border{color: "black";width: 3}
-            width: 20
-            height: 100
+
+        add: Transition {
+            NumberAnimation{
+                properties: "x,y"
+                duration: 500
+            }
         }
+
+        move: Transition {
+            NumberAnimation{
+                properties: "x,y"
+                duration: 500
+            }
+        }
+
+        populate: Transition {
+            NumberAnimation{
+                properties: "x,y"
+                duration: 500
+            }
+        }
+
+        focus: true
+        Keys.onSpacePressed:greenRect_.visible=!greenRect_.visible
     }
 }
