@@ -9,13 +9,24 @@ Window {
 //    color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    Text {
-        id: text1_
-        //必须用富文本
-        textFormat: Text.RichText
-        //定义链接
-        text:"See the <a href=\"http://qt-project.org\">Qt Project website</a>."
-        //link指代上面的web地址
-        onLinkActivated:console.log(link+" link actived")
+    Rectangle{
+        width: 200
+        height: 50
+        anchors.centerIn: parent
+        color:"yellow"
+
+        TextInput{
+            color: "blue"
+            font.pixelSize: parent.height-2
+            validator: IntValidator{
+                bottom: 10
+                top: 20
+            }
+            anchors{fill: parent;centerIn: parent}
+            focus: true
+
+            onEditingFinished: console.log(text)
+        }
+
     }
 }
