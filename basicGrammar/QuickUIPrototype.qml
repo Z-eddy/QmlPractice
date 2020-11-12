@@ -10,32 +10,35 @@ Window {
     title: qsTr("这是一个小标题")
 
     Rectangle{
-        //镜像翻转
-        LayoutMirroring.enabled:true
-        //子项是否继承翻转属性
-        LayoutMirroring.childrenInherit: true
+        color: "red"
         width: 300
-        height: 60
-        color: "pink"
-        border.width: 1
-
-        Row{
-            anchors{left: parent.left;margins: 5}
-            y:5;spacing: 5;padding: 5
-
-            Repeater{
-                model: 5
-                Rectangle{
-                    color: "grey"
-                    opacity: (5-index)/5
-                    width: 40
-                    height: 40
-                    Text {
-                        text: index+1
-                        anchors.centerIn: parent
-                        font.bold: true
-                    }
+        height: 200
+        MouseArea{
+            anchors.fill: parent
+            onClicked: console.log("aaaaaaaaaaaaaa click red rect")
+            onDoubleClicked: {
+                console.log("aaaaaaaaaaaa double click red rect")
+                mouse.accepted=false
+            }
+        }
+        Rectangle{
+            color: "blue"
+            width: 50
+            height: 50
+            MouseArea{
+                anchors.fill: parent
+                //可向下传播,没定义槽时自动传递,定义了槽需要accepted false才可以传播
+                propagateComposedEvents: true
+                onClicked: {
+                    console.log("bbbbbbbbbb blue click")
+                    mouse.accepted=false
                 }
+                /*
+                onDoubleClicked: {
+                    console.log("bbbbbbbbbb blue double click")
+                    mouse.accepted=false
+                }
+                */
             }
         }
     }
