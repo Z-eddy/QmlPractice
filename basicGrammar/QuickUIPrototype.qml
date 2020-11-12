@@ -13,32 +13,17 @@ Window {
         color: "red"
         width: 300
         height: 200
-        MouseArea{
-            anchors.fill: parent
-            onClicked: console.log("aaaaaaaaaaaaaa click red rect")
-            onDoubleClicked: {
-                console.log("aaaaaaaaaaaa double click red rect")
-                mouse.accepted=false
-            }
-        }
         Rectangle{
             color: "blue"
             width: 50
             height: 50
             MouseArea{
                 anchors.fill: parent
-                //可向下传播,没定义槽时自动传递,定义了槽需要accepted false才可以传播
-                propagateComposedEvents: true
-                onClicked: {
-                    console.log("bbbbbbbbbb blue click")
-                    mouse.accepted=false
+                onWheel: {
+//                    if(wheel.modifiers){//按下了某个键(Ctrl/shift/alt这些)
+                        console.log("change:",wheel.angleDelta.y)
+//                    }
                 }
-                /*
-                onDoubleClicked: {
-                    console.log("bbbbbbbbbb blue double click")
-                    mouse.accepted=false
-                }
-                */
             }
         }
     }
