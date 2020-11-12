@@ -9,24 +9,24 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    Grid{
-        padding: 5
-
-        Repeater{
-            model: 10//创建10个
-            Rectangle{//delegate
-                id:rect_
-                width: 40
-                height: 30
-                border.width: 2
-                color: Positioner.isFirstItem?"red":"lightsteelblue"
-
-                Text {
-                    id: text_
-                    anchors.centerIn: parent
-                    text: rect_.Positioner.index//显示自己的索引
-                }
-            }
+    Rectangle{
+        id:rect0_
+        width: 300
+        height: 200
+        color: "red"
+    }
+    Rectangle{
+        id:rect1_
+        width: 200
+        height: 100
+        color: "blue"
+        anchors{
+//            left: rect0_.lef
+//            top: rect0_.bottom
+            topMargin: 5
+            centerIn: rect0_
+            verticalCenterOffset:80
+            horizontalCenterOffset: 20
         }
     }
 }
