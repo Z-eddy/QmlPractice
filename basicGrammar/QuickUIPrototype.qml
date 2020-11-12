@@ -10,23 +10,50 @@ Window {
     title: qsTr("这是一个小标题")
 
     Rectangle{
-        id:rect0_
+        id:rect_
         width: 300
         height: 200
-        color: "red"
-    }
-    Rectangle{
-        id:rect1_
-        width: 200
-        height: 100
-        color: "blue"
-        anchors{
-//            left: rect0_.lef
-//            top: rect0_.bottom
-            topMargin: 5
-            centerIn: rect0_
-            verticalCenterOffset:80
-            horizontalCenterOffset: 20
+        anchors.centerIn: parent
+
+        Rectangle{
+            id:rect0_
+            width: 30
+            height: 20
+            color: "red"
+            x:50
+            y:100
+//            anchors.centerIn: parent
+        }
+
+        states: [
+            State {
+                name: "state0"
+                PropertyChanges {//使用属性改变margin
+                    target:rect0_
+                    anchors.leftMargin:50
+                }
+                AnchorChanges{//改变锚边
+                    target: rect0_
+                    anchors.left:rect_.left
+                }
+            },
+            State {
+                name: "state1"
+                PropertyChanges {
+                    target:rect0_
+                    anchors.leftMargin:10
+                }
+                AnchorChanges{
+                    target: rect0_
+                    anchors.left:rect_.right
+                }
+            }
+        ]
+
+        MouseArea{
+            anchors.fill: parent
+            onPressed: rect_.state="state0"
+            onReleased: rect_.state="state1"
         }
     }
 }
