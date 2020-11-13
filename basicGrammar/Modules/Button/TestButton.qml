@@ -17,7 +17,10 @@ Rectangle{
     MouseArea{
         id:mouseArea_
         anchors.fill: parent
-        onPressed:theBtn.actived(mouseX,mouseY)
+        onPressed:{
+            console.log(mouseX,mouseY)
+            theBtn.actived(mouseX,mouseY)
+        }
         onReleased: theBtn.deactived()
     }
 }

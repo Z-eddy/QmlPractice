@@ -15,26 +15,16 @@ Window {
         width: 400
         height: 300
         Loader{
-            anchors{
-                fill: parent
-                margins: 10
-            }
-//            anchors.centerIn: parent
             id:load_
+            source: "./Modules/TheItem/TestItem.qml"
         }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-                load_.sourceComponent=rect_
-            }
+
+        Component.onCompleted: {
+            load_.item.theMsg.connect(onTheMsg)
         }
-        Component{
-            id:rect_
-            Rectangle{
-                color: "green"
-                width: 50
-                height: 50
-            }
+
+        function onTheMsg(msg){
+            console.log(msg+" signal")
         }
     }
 }

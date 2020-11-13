@@ -1,19 +1,14 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 
-Item {
-    property Component myComponent:com0
+Rectangle{
+    id:rect_
+    signal theMsg(string msg)
 
-    QtObject{
-        id:internalSetting
-        property color theColor: "green"
-    }
+    width: 100
+    height: 100
 
-    Component{
-        id:com0
-        Rectangle{
-            color: internalSetting.theColor
-            width: 200
-            height: 50
-        }
+    MouseArea{
+        anchors.fill: parent
+        onClicked: rect_.theMsg("test msg")
     }
 }
