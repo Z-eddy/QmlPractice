@@ -11,23 +11,16 @@ Window {
     title: qsTr("这是一个小标题")
 
     Rectangle{
-        width: 200
-        height: text_.height
-        anchors.centerIn: parent
         color: "pink"
-        Text {
-            id: text_
-            width: parent.width
-            anchors.centerIn: parent
-            font.pixelSize: 30
-            wrapMode: Text.WordWrap
+        width: 400
+        height: 300
+        Loader{
+            id:load_
         }
-        Timer{
-            interval: 500//500ms
-            repeat: true
-            running:true
-            onTriggered: {
-                text_.text=Date().toString()
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                load_.source="./Modules/TheText/TheText.qml"
             }
         }
     }
