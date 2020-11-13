@@ -10,34 +10,53 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    RowLayout{
-        spacing: 6
-        anchors.fill: parent
-
-        Rectangle{
-            color: "green"
-            //这里不能用属性组！
-            Layout.fillWidth: true
-            Layout.minimumWidth: 100
-            Layout.preferredWidth: 200
-            Layout.maximumWidth: 300
-            Layout.minimumHeight: 150
-            Text {
-                anchors.centerIn: parent
-                text:"w:"+ parent.width+" h:"+parent.height
-            }
+    Grid{
+        anchors{
+            left: parent.left
+            leftMargin: 6
+            top: parent.top
+            topMargin: 10
         }
+        width: 400
+        height: 300
+        columns: 2
 
         Rectangle{
-            color: "pink"
-            Layout.fillWidth: true
-            Layout.minimumWidth: 100
-            Layout.preferredWidth: 200
-            Layout.minimumHeight: 100
-            Text {
-                anchors.centerIn: parent
-                text:"w:"+parent.width+" h:"+parent.height
-            }
+            id:topLeft_
+            color: focus?"red":"green"
+            width: 50
+            height: 50
+            focus: true
+
+            KeyNavigation.right:topRight_
+            KeyNavigation.down:bottomLeft_
+        }
+        Rectangle{
+            id:topRight_
+            color: focus?"red":"green"
+            width: 50
+            height: 50
+
+            KeyNavigation.left:topLeft_
+            KeyNavigation.down:bottomRight_
+        }
+        Rectangle{
+            id:bottomLeft_
+            color: focus?"red":"green"
+            width: 50
+            height: 50
+
+            KeyNavigation.up:topLeft_
+            KeyNavigation.right:bottomRight_
+        }
+        Rectangle{
+            id:bottomRight_
+            color: focus?"red":"green"
+            width: 50
+            height: 50
+
+            KeyNavigation.left:bottomLeft_
+            KeyNavigation.up:topRight_
         }
     }
 }
