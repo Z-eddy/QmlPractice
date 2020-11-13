@@ -10,53 +10,25 @@ Window {
     color: "#ffff7f"
     title: qsTr("这是一个小标题")
 
-    Grid{
-        anchors{
-            left: parent.left
-            leftMargin: 6
-            top: parent.top
-            topMargin: 10
+    Rectangle{
+        width: 200
+        height: text_.height
+        anchors.centerIn: parent
+        color: "pink"
+        Text {
+            id: text_
+            width: parent.width
+            anchors.centerIn: parent
+            font.pixelSize: 30
+            wrapMode: Text.WordWrap
         }
-        width: 400
-        height: 300
-        columns: 2
-
-        Rectangle{
-            id:topLeft_
-            color: focus?"red":"green"
-            width: 50
-            height: 50
-            focus: true
-
-            KeyNavigation.right:topRight_
-            KeyNavigation.down:bottomLeft_
-        }
-        Rectangle{
-            id:topRight_
-            color: focus?"red":"green"
-            width: 50
-            height: 50
-
-            KeyNavigation.left:topLeft_
-            KeyNavigation.down:bottomRight_
-        }
-        Rectangle{
-            id:bottomLeft_
-            color: focus?"red":"green"
-            width: 50
-            height: 50
-
-            KeyNavigation.up:topLeft_
-            KeyNavigation.right:bottomRight_
-        }
-        Rectangle{
-            id:bottomRight_
-            color: focus?"red":"green"
-            width: 50
-            height: 50
-
-            KeyNavigation.left:bottomLeft_
-            KeyNavigation.up:topRight_
+        Timer{
+            interval: 500//500ms
+            repeat: true
+            running:true
+            onTriggered: {
+                text_.text=Date().toString()
+            }
         }
     }
 }
