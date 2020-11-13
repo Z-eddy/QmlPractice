@@ -15,12 +15,25 @@ Window {
         width: 400
         height: 300
         Loader{
+            anchors{
+                fill: parent
+                margins: 10
+            }
+//            anchors.centerIn: parent
             id:load_
         }
         MouseArea{
             anchors.fill: parent
             onClicked: {
-                load_.source="./Modules/TheText/TheText.qml"
+                load_.sourceComponent=rect_
+            }
+        }
+        Component{
+            id:rect_
+            Rectangle{
+                color: "green"
+                width: 50
+                height: 50
             }
         }
     }
