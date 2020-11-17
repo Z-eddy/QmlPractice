@@ -14,28 +14,36 @@ ApplicationWindow {
         }
     }
 
-    Column{
-        id:column_
-        Button{
-            text: "btn0"
-            checkable: true
-            ButtonGroup.group: btnGroup_
+    Switch{
+        id:control
+        text: qsTr("Style Switch")
+        checked: true
+
+        indicator: Rectangle{
+            implicitHeight: 48
+            implicitWidth: 48
+            x:control.leftPadding
+            y:parent.height/2-height/2
+            radius: 13
+            color: control.checked?"yellow":"green"
+            border.color: control.checked?"red":"blue"
+            Rectangle{
+                x:control.checked?parent.width-width:0
+                width: 26;height: 26
+                radius: 13//圆形
+                color: control.down?"#cccccc":"#ffffff"
+                border.color: control.checked?(control.down?"#17a81a":"#21be2b"):"#999999"
+            }
         }
-        Button{
-            text: "btn1"
-            checkable: true
-            ButtonGroup.group: btnGroup_
+
+        contentItem: Label{
+            text: control.text
+            font: control.font
+            opacity: enabled?1.0:0.3
+            color: control.down?"red":"pink"
+            horizontalAlignment: "AlignHCenter"
+            verticalAlignment: "AlignVCenter"
+            leftPadding: control.indicator.width+control.spacing
         }
-        Button{
-            text: "btn2"
-            //如果没有设定checkable则会忽略ButtonGroup
-//            checkable: true
-            ButtonGroup.group: btnGroup_
-        }
-    }
-    ButtonGroup{
-        id:btnGroup_
-        //可以一组设定互斥
-//        buttons: column_.children
     }
 }
