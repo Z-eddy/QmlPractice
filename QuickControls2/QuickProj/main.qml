@@ -15,7 +15,11 @@ ApplicationWindow {
     }
 
     DelayButton{
-        text: "delay"
-        delay: 2000
+        action: act_
+        delay: 1000
+    }
+    Action{
+        id:act_
+        text: "abcdef"
     }
 }
