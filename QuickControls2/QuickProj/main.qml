@@ -14,65 +14,21 @@ ApplicationWindow {
         }
     }
 
-    BusyIndicator{
-        id:control_;
-//        running:parent.width<301
-        anchors.centerIn: parent
-        width: 100
-        height:width
-        contentItem: Item{
-            id:item_
-//            width: 200
-//            height:width
-            x:parent.width/2-width/2
-            y:parent.height/2-height/2
-            opacity: control_.running?1:0
-
-            Behavior on opacity {//显示或隐藏时动作
+    PageIndicator{
+        id:control_
+        count: 5
+        interactive: true
+        currentIndex: 2
+        delegate: Rectangle{
+            implicitWidth: 8
+            implicitHeight: implicitWidth
+            color: "#21be2b"
+            opacity: index===control_.currentIndex?0.95:pressed?0.7:0.45
+            Behavior on opacity {
                 OpacityAnimator{
-                    duration: 1000
+                    duration: 100
                 }
             }
-
-            RotationAnimation{
-                target: item_
-                running: control_.visible&&control_.running//可见且运行时
-                from: 0;to:360//转动角度
-                loops:Animation.Infinite//一直转
-                duration: 1250//转动一圈的时间
-            }
-
-            Rectangle{
-                x:0
-                y:x
-                width: 10
-                height: width
-            }
-
-//            /*
-            Repeater{
-                id:repeater_
-                model: 6
-                Rectangle{
-                    x:parent.width/2-width/2
-                    y:parent.height/2-height/2
-                    implicitWidth: 10
-                    implicitHeight:width
-                    radius:width/2
-                    color: "#21be2b"
-                    transform: [
-                        Translate{
-                            y:-Math.min(item_.width,item_.height)*0.5+5//自适应大小
-                        },
-                        Rotation{
-                            angle: index/repeater_.count*360
-                            origin.x:5
-                            origin.y:5
-                        }
-                    ]
-                }
-            }
-//            */
         }
     }
 }
