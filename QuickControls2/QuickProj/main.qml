@@ -14,21 +14,18 @@ ApplicationWindow {
         }
     }
 
-    PageIndicator{
-        id:control_
-        count: 5
-        interactive: true
-        currentIndex: 2
-        delegate: Rectangle{
-            implicitWidth: 8
-            implicitHeight: implicitWidth
-            color: "#21be2b"
-            opacity: index===control_.currentIndex?0.95:pressed?0.7:0.45
-            Behavior on opacity {
-                OpacityAnimator{
-                    duration: 100
-                }
+    Column{
+        spacing: 20
+        anchors.centerIn: parent
+        Repeater{
+            model: 3
+            TextField{
+                id:text_
+                placeholderText: qsTr("等待输入"+index)
+                //0密码形式,1输入时才显示,2正常显示
+                echoMode: index===0?TextField.Password:index===1?TextField.PasswordEchoOnEdit:TextField.Normal
             }
         }
+
     }
 }
