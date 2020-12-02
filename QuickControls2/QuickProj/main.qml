@@ -14,11 +14,10 @@ ApplicationWindow {
         }
     }
 
-    Slider{
-        id:slider_
-        from:0
-        to:10
-        stepSize: 2
-        snapMode:"NoSnap"
+    RangeSlider{
+        from:0;to:100
+        stepSize: 10
+        first.value: 1
+        second.value: 50
     }
 }
