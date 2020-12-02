@@ -13,17 +13,12 @@ ApplicationWindow {
             GradientStop{position: 1;color: "#c1bbf9"}
         }
     }
-    SpinBox{
-        id:spin_
-        from:0;to:99999999
-        value: dial_.value
-    }
-    Dial{
-        id:dial_
-        anchors.top: spin_.bottom
-        wrap:true
-        from: 0;to:10
-        stepSize: 1
-        onValueChanged: console.log(dial_.value)
+
+    Slider{
+        id:slider_
+        from:0
+        to:10
+        stepSize: 2
+        snapMode:"NoSnap"
     }
 }
