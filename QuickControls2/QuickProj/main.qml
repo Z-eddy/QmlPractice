@@ -14,12 +14,34 @@ ApplicationWindow {
         }
     }
 
-    ScrollView{
-        anchors.centerIn: parent
-        width: 200
-        height: 100
-        TextArea{
-            selectByMouse: true
+    ComboBox{
+        id:combo0_
+        editable: true
+        selectTextByMouse: true
+        model: ["测试0","ab","bb"]
+    }
+    ComboBox{
+        id:combo1_
+        editable: true
+        selectTextByMouse: true
+        textRole:"text"
+        anchors.top:combo0_.bottom
+        model: ListModel{
+            id:theList_
+            ListElement{text:"aa";color:"green"}
+            ListElement{text:"bb";color:"yellow"}
+            ListElement{text:"cc";color:"red"}
+        }
+        onCurrentIndexChanged: {
+            //项改变时
+            console.debug(theList_.get(currentIndex).text+","+theList_.get(currentIndex).color)
+        }
+        onAccepted: {
+            //当输入新值时判定是否储存
+            if(find(editText)===-1){
+                //如果没有则储存
+                theList_.append({text:editText})
+            }
         }
     }
 }
