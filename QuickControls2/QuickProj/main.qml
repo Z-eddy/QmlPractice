@@ -14,34 +14,48 @@ ApplicationWindow {
         }
     }
 
-    ComboBox{
-        id:combo0_
+    SpinBox{
+        id:spin_
+        from: 0;to:items.length-1
+        value: 1
         editable: true
-        selectTextByMouse: true
-        model: ["测试0","ab","bb"]
-    }
-    ComboBox{
-        id:combo1_
-        editable: true
-        selectTextByMouse: true
-        textRole:"text"
-        anchors.top:combo0_.bottom
-        model: ListModel{
-            id:theList_
-            ListElement{text:"aa";color:"green"}
-            ListElement{text:"bb";color:"yellow"}
-            ListElement{text:"cc";color:"red"}
+
+        property var items:["aa","Bb","cc"]
+
+        validator: RegExpValidator{
+            regExp: new RegExp("(aa|Bb|cc)","i")
         }
-        onCurrentIndexChanged: {
-            //项改变时
-            console.debug(theList_.get(currentIndex).text+","+theList_.get(currentIndex).color)
+
+        textFromValue: function(value){
+            return items[value]
         }
-        onAccepted: {
-            //当输入新值时判定是否储存
-            if(find(editText)===-1){
-                //如果没有则储存
-                theList_.append({text:editText})
+
+        valueFromText: function(text){
+            for(var i=0;i!==items.length;++i){
+                if(items[i].toLowerCase().indexOf(text.toLowerCase())===0){
+                    return i;
+                }
+            }
+            return spin_.value
+        }
+
+//        /*
+        MouseArea{
+            //不能覆盖parent,会导致增减无效
+            anchors.fill:parent.contentItem
+            onWheel: {
+                var increace= wheel.angleDelta
+                console.log(increace)
+                if(increace.y>0){
+                    spin_.increase()
+                    console.log("increace")
+                }
+                else{
+                    spin_.decrease()
+                    console.log("decreace")
+                }
             }
         }
+//        */
     }
 }
