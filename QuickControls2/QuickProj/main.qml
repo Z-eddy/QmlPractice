@@ -14,10 +14,14 @@ ApplicationWindow {
         }
     }
 
-    RangeSlider{
-        from:0;to:100
-        stepSize: 10
-        first.value: 1
-        second.value: 50
+    Row{
+        Tumbler{
+            model: 12
+            visibleItemCount: 5
+        }
+        Tumbler{
+            model: ["aa","bb","cc"]
+            wrap: true
+        }
     }
 }
