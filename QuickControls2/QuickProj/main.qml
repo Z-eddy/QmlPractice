@@ -15,11 +15,16 @@ ApplicationWindow {
         }
     }
 
-    Frame{
-        anchors.fill: parent
+    GroupBox{
+        //        anchors.fill: parent
+        label:CheckBox{
+            id:isEnable_
+            text:qsTr("theLab")
+        }
 
         ColumnLayout{
             anchors.fill: parent
+            enabled:isEnable_.checked
             CheckBox{text: qsTr("Ab")}
             CheckBox{text: qsTr("Cc")}
             CheckBox{text: qsTr("De")}
