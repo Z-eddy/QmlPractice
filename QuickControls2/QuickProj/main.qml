@@ -1,6 +1,6 @@
 ﻿import QtQuick 2.12
-import QtQuick.Controls 1.4
-//import Qt.labs.platform 1.0
+import QtQuick.Controls 2.9
+import QtQuick.Layouts 1.12
 
 ApplicationWindow {
     width: 640
@@ -8,25 +8,24 @@ ApplicationWindow {
     visible: true
     title: qsTr("Scroll")
 
+    background: Rectangle{
+        gradient: Gradient{
+            GradientStop{position: 0;color: "#ffffff"}
+            GradientStop{position: 1;color: "#c1bbf9"}
+        }
+    }
 
-    menuBar: MenuBar{
-        Menu{
-            title: qsTr("&File")
-            Action{text: qsTr("&New...")}
-            Action{text: qsTr("&Open...")}
-            MenuSeparator{}
-            Action{text: qsTr("Save &As...")}
+    Pane{
+        anchors.fill: parent
+        background: Rectangle{
+            opacity: 0
         }
-        Menu{
-            title: qsTr("&Edit")
-            Action{text: qsTr("Cu&t...")}
-            Action{text: qsTr("&Copy...")}
-            MenuSeparator{}
-            Action{text: qsTr("&Paste")}
-        }
-        Menu{
-            title: qsTr("&Help")
-            Action{text: qsTr("&About")}
+
+        ColumnLayout{
+            anchors.fill: parent
+            CheckBox{text: qsTr("Ab")}
+            CheckBox{text: qsTr("Cc")}
+            CheckBox{text: qsTr("De")}
         }
     }
 }
