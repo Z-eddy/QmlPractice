@@ -15,19 +15,20 @@ ApplicationWindow {
         }
     }
 
-    GroupBox{
-        //        anchors.fill: parent
-        label:CheckBox{
-            id:isEnable_
-            text:qsTr("theLab")
-        }
+    header: Label{
+        text: viewPages_.currentItem.title
+        horizontalAlignment: "AlignHCenter"
+    }
 
-        ColumnLayout{
-            anchors.fill: parent
-            enabled:isEnable_.checked
-            CheckBox{text: qsTr("Ab")}
-            CheckBox{text: qsTr("Cc")}
-            CheckBox{text: qsTr("De")}
-        }
+    SwipeView{
+        id:viewPages_
+        anchors.fill: parent
+        Page{title: qsTr("aa")}
+        Page{title: qsTr("Bb")}
+        Page{title: qsTr("cc")}
+    }
+
+    footer: Label{
+        text: "footer"+viewPages_.currentIndex
     }
 }
