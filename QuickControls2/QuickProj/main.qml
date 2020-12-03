@@ -15,32 +15,19 @@ ApplicationWindow {
         }
     }
 
-    StackView{
-        id:stack_
-        anchors.fill: parent
-        initialItem: Item{
-            id:red_
-            Rectangle{anchors.fill: parent;color: "red"}
-        }
+    header:TabBar{
+        id:bar_
+        width: parent.width
+        TabButton{text: qsTr("Ab")}
+        TabButton{text: qsTr("Bb")}
+        TabButton{text: qsTr("CC")}
     }
 
-    Rectangle{id:blue_;color: "blue"}
-    Rectangle{id:green_;color: "green"}
-    Rectangle{id:yellow_;color: "yellow"}
-    Rectangle{id:orange_;color: "orange"}
-
-    MouseArea{
+    StackLayout{
         anchors.fill: parent
-        acceptedButtons: Qt.LeftButton|Qt.RightButton|Qt.MiddleButton
-        onClicked: {
-            if(mouse.button===Qt.LeftButton){
-                stack_.push([blue_,green_,yellow_])
-            }
-            else if(mouse.button===Qt.RightButton){
-                stack_.pop()
-            }else{
-                stack_.replace(orange_)
-            }
-        }
+        currentIndex: bar_.currentIndex
+        Rectangle{anchors.fill: parent;color: "red"}
+        Rectangle{anchors.fill: parent;color: "yellow"}
+        Rectangle{anchors.fill: parent;color: "green"}
     }
 }
