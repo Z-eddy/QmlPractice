@@ -1,5 +1,5 @@
 ﻿import QtQuick 2.12
-import QtQuick.Controls 2.9
+import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
 ApplicationWindow {
@@ -15,20 +15,18 @@ ApplicationWindow {
         }
     }
 
-    header: Label{
-        text: viewPages_.currentItem.title
-        horizontalAlignment: "AlignHCenter"
-    }
-
-    SwipeView{
-        id:viewPages_
-        anchors.fill: parent
-        Page{title: qsTr("aa")}
-        Page{title: qsTr("Bb")}
-        Page{title: qsTr("cc")}
-    }
-
-    footer: Label{
-        text: "footer"+viewPages_.currentIndex
+    ScrollView{
+        anchors.centerIn: parent
+        //超出部分剪贴
+        clip: true
+        width:200
+        height: 100
+        //隐藏水平条
+        ScrollBar.horizontal.policy:ScrollBar.AlwaysOff
+        ListView{
+            id:view_
+            model: 20
+            delegate: ItemDelegate{text: "Item "+index}
+        }
     }
 }
