@@ -8,35 +8,24 @@ ApplicationWindow {
     visible: true
     title: qsTr("Scroll")
 
-    SwipeView{
-        id:view_
-        currentIndex: 1
-        anchors.fill: parent
-        Repeater{
-            model: 6
-            Loader{
-                //只加载 上/当前/下 三帧
-                active: SwipeView.isCurrentItem||SwipeView.isNextItem||SwipeView.isPreviousItem
-                sourceComponent: Text {
-                    text: index
-                    Component.onCompleted: console.log("create:",index)
-                    Component.onDestruction: console.log("destroyed:",index)
-                }
-            }
-        }
+    Button{
+        onClicked: popup_.open()
+        anchors.bottom: parent.bottom
     }
-    PageIndicator{
-        id:indicator_
-        currentIndex: view_.currentIndex
-        count: view_.count
-        anchors.bottom: view_.bottom
-        anchors.horizontalCenter: view_.horizontalCenter
-        interactive: true
-        onCurrentIndexChanged: {
-            console.log("->...",currentIndex)
-            if(view_.currentIndex!==currentIndex){
-                view_.currentIndex=currentIndex
-            }
+
+//    Menu{
+    Popup{
+        id:popup_
+        width: 300
+        height: 200
+        modal: true
+        visible: true
+        parent: Overlay.overlay
+        x:Math.round((parent.width-width)/2)
+        y:Math.round((parent.height-height)/2)
+
+        Overlay.modal: Rectangle{
+            color: "#aacfdbe7"
         }
     }
 }
