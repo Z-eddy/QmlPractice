@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
+import Qt.labs.platform 1.0
 
 ApplicationWindow {
     width: 640
@@ -51,8 +52,8 @@ ApplicationWindow {
         anchors.top:rect_.bottom
         anchors.left: rect_.left
         onClicked:{
-            btnMenu_.x=btn_.width/2
-            btnMenu_.y=btn_.height/2
+//            btnMenu_.x=btn_.width/2
+//            btnMenu_.y=btn_.height/2
             btnMenu_.open()
         }
         Menu{
