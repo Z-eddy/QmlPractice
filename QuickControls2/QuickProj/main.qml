@@ -15,18 +15,32 @@ ApplicationWindow {
         }
     }
 
-    ScrollView{
-        anchors.centerIn: parent
-        //超出部分剪贴
-        clip: true
-        width:200
-        height: 100
-        //隐藏水平条
-        ScrollBar.horizontal.policy:ScrollBar.AlwaysOff
-        ListView{
-            id:view_
-            model: 20
-            delegate: ItemDelegate{text: "Item "+index}
+    StackView{
+        id:stack_
+        anchors.fill: parent
+        initialItem: Item{
+            id:red_
+            Rectangle{anchors.fill: parent;color: "red"}
+        }
+    }
+
+    Rectangle{id:blue_;color: "blue"}
+    Rectangle{id:green_;color: "green"}
+    Rectangle{id:yellow_;color: "yellow"}
+    Rectangle{id:orange_;color: "orange"}
+
+    MouseArea{
+        anchors.fill: parent
+        acceptedButtons: Qt.LeftButton|Qt.RightButton|Qt.MiddleButton
+        onClicked: {
+            if(mouse.button===Qt.LeftButton){
+                stack_.push([blue_,green_,yellow_])
+            }
+            else if(mouse.button===Qt.RightButton){
+                stack_.pop()
+            }else{
+                stack_.replace(orange_)
+            }
         }
     }
 }
