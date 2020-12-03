@@ -15,11 +15,8 @@ ApplicationWindow {
         }
     }
 
-    Pane{
+    Frame{
         anchors.fill: parent
-        background: Rectangle{
-            opacity: 0
-        }
 
         ColumnLayout{
             anchors.fill: parent
