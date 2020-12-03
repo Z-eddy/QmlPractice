@@ -8,32 +8,34 @@ ApplicationWindow {
     visible: true
     title: qsTr("Scroll")
 
-    StackView{
-        id:stack_
+    SwipeView{
+        id:view_
+        currentIndex: 1
         anchors.fill: parent
-    }
-
-    header: ToolBar{
-        RowLayout{
-            anchors.fill: parent
-            ToolButton{text: qsTr("<");onClicked: stack_.pop()}
-            Label{
-                text: "theLab"
-                elide: "ElideRight"
-                horizontalAlignment: "AlignHCenter"
-                verticalAlignment: "AlignVCenter"
-                Layout.fillWidth: true
-            }
-            ToolButton{
-                id:helpBtn_
-                text: qsTr(":")
-                onClicked:menu_.open()
-                Menu{
-                    id:menu_
-                    y:helpBtn_.height
-                    Action{text: "Help..."}
-                    Action{text: "About"}
+        Repeater{
+            model: 6
+            Loader{
+                //只加载 上/当前/下 三帧
+                active: SwipeView.isCurrentItem||SwipeView.isNextItem||SwipeView.isPreviousItem
+                sourceComponent: Text {
+                    text: index
+                    Component.onCompleted: console.log("create:",index)
+                    Component.onDestruction: console.log("destroyed:",index)
                 }
+            }
+        }
+    }
+    PageIndicator{
+        id:indicator_
+        currentIndex: view_.currentIndex
+        count: view_.count
+        anchors.bottom: view_.bottom
+        anchors.horizontalCenter: view_.horizontalCenter
+        interactive: true
+        onCurrentIndexChanged: {
+            console.log("->...",currentIndex)
+            if(view_.currentIndex!==currentIndex){
+                view_.currentIndex=currentIndex
             }
         }
     }
