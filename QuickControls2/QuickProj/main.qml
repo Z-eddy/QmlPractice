@@ -8,26 +8,33 @@ ApplicationWindow {
     visible: true
     title: qsTr("Scroll")
 
-    background: Rectangle{
-        gradient: Gradient{
-            GradientStop{position: 0;color: "#ffffff"}
-            GradientStop{position: 1;color: "#c1bbf9"}
-        }
-    }
-
-    header:TabBar{
-        id:bar_
-        width: parent.width
-        TabButton{text: qsTr("Ab")}
-        TabButton{text: qsTr("Bb")}
-        TabButton{text: qsTr("CC")}
-    }
-
-    StackLayout{
+    StackView{
+        id:stack_
         anchors.fill: parent
-        currentIndex: bar_.currentIndex
-        Rectangle{anchors.fill: parent;color: "red"}
-        Rectangle{anchors.fill: parent;color: "yellow"}
-        Rectangle{anchors.fill: parent;color: "green"}
+    }
+
+    header: ToolBar{
+        RowLayout{
+            anchors.fill: parent
+            ToolButton{text: qsTr("<");onClicked: stack_.pop()}
+            Label{
+                text: "theLab"
+                elide: "ElideRight"
+                horizontalAlignment: "AlignHCenter"
+                verticalAlignment: "AlignVCenter"
+                Layout.fillWidth: true
+            }
+            ToolButton{
+                id:helpBtn_
+                text: qsTr(":")
+                onClicked:menu_.open()
+                Menu{
+                    id:menu_
+                    y:helpBtn_.height
+                    Action{text: "Help..."}
+                    Action{text: "About"}
+                }
+            }
+        }
     }
 }
