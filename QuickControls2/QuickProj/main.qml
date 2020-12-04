@@ -1,7 +1,9 @@
 ﻿import QtQuick 2.12
-import QtQuick.Controls 2.5
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.0
 
 ApplicationWindow {
+    id:window
     width: 640
     height: 480
     visible: true
@@ -15,16 +17,18 @@ ApplicationWindow {
     }
 
     Button{
-        anchors.centerIn: parent
-        width: 300
-        height: 200
-//        hoverEnabled: true
+        onClicked: drawer_.open()
+    }
 
-//        ToolTip.delay: 1000
-//        ToolTip.timeout: 3000
-        ToolTip.visible: hovered
-        ToolTip.text: "the text"
-//        ToolTip.x:
-//        ToolTip.y:
+    Drawer{
+        id:drawer_
+        width: window.width*0.3
+        height: window.height
+        ColumnLayout{
+            anchors.fill: parent
+            CheckBox{text: qsTr("Aa")}
+            CheckBox{text: qsTr("Bb")}
+            CheckBox{text: qsTr("Cc")}
+        }
     }
 }
