@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.0
-import QtQuick.Dialogs 1.0
+import QtQuick.Dialogs 1.3
 
 ApplicationWindow {
     id:window_
@@ -10,15 +10,20 @@ ApplicationWindow {
     visible: true
     title: qsTr("Scroll")
 
-    FileDialog{
-        id:fileDialog_
-        title: "choose file"
-        nameFilters: ["Img(*.jpg *.png)","All(*)"]
-        onAccepted: console.log(fileDialog_.fileUrl)
-        onRejected: console.log("Canceled")
+    Label{
+        id:label_
+        text: "hello world!"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: fontDialog_.open()
+        }
     }
 
-    Button{
-        onClicked: fileDialog_.open()
+    FontDialog{
+        id:fontDialog_
+        title: "select font"
+//        font:label_.font
+        onAccepted: {label_.font=fontDialog_.font}
+        onRejected: console.log("Canceled")
     }
 }
