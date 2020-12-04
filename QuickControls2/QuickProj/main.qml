@@ -1,6 +1,5 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.12
 
 ApplicationWindow {
     width: 640
@@ -8,24 +7,31 @@ ApplicationWindow {
     visible: true
     title: qsTr("Scroll")
 
-    Button{
-        onClicked: popup_.open()
-        anchors.bottom: parent.bottom
+    background: Rectangle{
+        gradient: Gradient{
+            GradientStop{position: 0;color: "#ffffff"}
+            GradientStop{position: 1;color: "#c1bbf9"}
+        }
     }
 
-//    Menu{
-    Popup{
-        id:popup_
+    Rectangle{
+        anchors.centerIn: parent
         width: 300
         height: 200
-        modal: true
-        visible: true
-        parent: Overlay.overlay
-        x:Math.round((parent.width-width)/2)
-        y:Math.round((parent.height-height)/2)
-
-        Overlay.modal: Rectangle{
-            color: "#aacfdbe7"
+        Dialog{
+            id:dialog_
+            title: "theTitle"
+            modal: true
+            anchors.centerIn: parent
+            width: 200
+            height: 100
+            standardButtons: Dialog.Ok|Dialog.Cancel
+            onAccepted: console.log("accepted")
+            onRejected: console.log("rejected")
+        }
+        MouseArea{
+            anchors.fill: parent
+            onClicked: dialog_.open()
         }
     }
 }
