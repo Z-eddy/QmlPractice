@@ -15,15 +15,18 @@ ApplicationWindow {
         text: "hello world!"
         MouseArea{
             anchors.fill: parent
-            onClicked: fontDialog_.open()
+            onClicked:msgDlg_.open()
         }
     }
 
-    FontDialog{
-        id:fontDialog_
-        title: "select font"
-//        font:label_.font
-        onAccepted: {label_.font=fontDialog_.font}
-        onRejected: console.log("Canceled")
+    MessageDialog{
+        id:msgDlg_
+        title: "this Dlg"
+        text: "the text"
+        detailedText: "detail text"
+        icon: "Information"
+        standardButtons: StandardButton.Yes|StandardButton.Abort|StandardButton.Cancel
+        onYes: console.log("yes")
+        onRejected: console.log("Reject")
     }
 }
