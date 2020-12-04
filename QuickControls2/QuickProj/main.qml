@@ -14,24 +14,17 @@ ApplicationWindow {
         }
     }
 
-    Rectangle{
+    Button{
         anchors.centerIn: parent
         width: 300
         height: 200
-        Dialog{
-            id:dialog_
-            title: "theTitle"
-            modal: true
-            anchors.centerIn: parent
-            width: 200
-            height: 100
-            standardButtons: Dialog.Ok|Dialog.Cancel
-            onAccepted: console.log("accepted")
-            onRejected: console.log("rejected")
-        }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: dialog_.open()
-        }
+//        hoverEnabled: true
+
+//        ToolTip.delay: 1000
+//        ToolTip.timeout: 3000
+        ToolTip.visible: hovered
+        ToolTip.text: "the text"
+//        ToolTip.x:
+//        ToolTip.y:
     }
 }
