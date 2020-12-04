@@ -10,16 +10,15 @@ ApplicationWindow {
     visible: true
     title: qsTr("Scroll")
 
-    ColorDialog{
-        id:colorDialog_
-        title: "color choose"
-        onAccepted: {
-            window_.color=color
-        }
-        onRejected: console.log("canceled")
+    FileDialog{
+        id:fileDialog_
+        title: "choose file"
+        nameFilters: ["Img(*.jpg *.png)","All(*)"]
+        onAccepted: console.log(fileDialog_.fileUrl)
+        onRejected: console.log("Canceled")
     }
 
     Button{
-        onClicked: colorDialog_.open()
+        onClicked: fileDialog_.open()
     }
 }
